@@ -1,11 +1,11 @@
-from typing import Any, Set, Dict, Hashable, Optional
+from typing import Any, Hashable, Optional
 from collections.abc import MutableMapping
 
 class ChainMap(MutableMapping):
-    def __init__(self, *tulp: Dict) -> None:
+    def __init__(self, *tulp: dict) -> None:
         self.dictLt = list(tulp)
 
-    def lookup(self, key: Hashable) -> Optional[Dict]:
+    def lookup(self, key: Hashable) -> Optional[dict]:
         for m in self.dictLt:
             if key in m:
                 return m
@@ -31,8 +31,8 @@ class ChainMap(MutableMapping):
         else:
             raise KeyError(key)
 
-    def key_set(self) -> Set:
-        keys: Set = set()
+    def key_set(self) -> set:
+        keys: set = set()
         for m in self.dictLt:
             keys.update(m.keys())
         return keys
